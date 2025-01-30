@@ -11,11 +11,11 @@ import test.film.R
 import test.film.domain.model.FilmData
 import test.film.presentation.detailsFilmScreen.fragment.DetailsFilmFragment
 import test.film.presentation.movieGalleryScreen.compose.FilmGalleryScreen
-import test.film.presentation.movieGalleryScreen.viewmodel.MovieGalleryVM
+import test.film.presentation.movieGalleryScreen.viewmodel.FilmGalleryVM
 
 class MovieGalleryFragment : Fragment() {
 
-    private val movieGalleryVM: MovieGalleryVM by viewModel()
+    private val filmGalleryVM: FilmGalleryVM by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,11 +24,11 @@ class MovieGalleryFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 FilmGalleryScreen(
-                    movieGalleryVM.uiState.value,
+                    filmGalleryVM.uiState.value,
                     ::openDetailsFilm,
-                    movieGalleryVM::clickToGenre,
-                    movieGalleryVM.activeGenre.value,
-                    movieGalleryVM::reload
+                    filmGalleryVM::clickToGenre,
+                    filmGalleryVM.activeGenre.value,
+                    filmGalleryVM::reload
                 )
             }
         }
