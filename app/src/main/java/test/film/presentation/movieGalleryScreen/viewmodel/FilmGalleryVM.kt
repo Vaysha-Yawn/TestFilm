@@ -1,6 +1,5 @@
 package test.film.presentation.movieGalleryScreen.viewmodel
 
-import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -33,7 +32,7 @@ class FilmGalleryVM(
             onError(throwable.message ?: "")
         }
         viewModelScope.launch(coroutineExceptionHandler) {
-            withContext(Dispatchers.IO){
+            withContext(Dispatchers.IO) {
                 val films = getSortedFilmsUseCase()
                 val genres = getGenreUseCase(films)
                 allFilms = films

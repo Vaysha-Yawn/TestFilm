@@ -7,6 +7,6 @@ class GetSortedFilmsUseCase(
     private val repository: MoviesRepository
 ) {
     suspend operator fun invoke(): List<FilmData> {
-        return repository.getMovies().sortedBy { it.localizedName }
+         return repository.getMovies().sortedBy { it.localizedName }
     }
 }

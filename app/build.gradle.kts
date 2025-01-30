@@ -62,8 +62,9 @@ dependencies {
     implementation(libs.koin.core)
     implementation (libs.koin.android)
 
-    implementation(libs.coil.network.okhttp)
-    implementation(libs.coil.compose)
+    implementation (libs.glide)
+    annotationProcessor (libs.glide.compiler)
+    implementation (libs.glide.compose)
 
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

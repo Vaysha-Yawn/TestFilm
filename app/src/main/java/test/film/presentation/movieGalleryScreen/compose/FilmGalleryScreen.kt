@@ -30,7 +30,7 @@ fun FilmGalleryScreen(
             TopAppBar(
                 title = {
                     Text(
-                        stringResource(R.string.title_top_bar_main),
+                        stringResource(R.string.films),
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
                         style = Typography.bodyLarge,

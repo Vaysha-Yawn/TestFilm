@@ -19,7 +19,7 @@ fun FilmGalleryScreenSuccess(
     LazyColumn {
         item {
             FilterGenre(genres, activeGenre, clickToGenre)
-            Spacer(Modifier.height(80.dp))
+            Spacer(Modifier.height(16.dp))
             FilmGallery(films, openDetails)
         }
     }

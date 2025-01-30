@@ -13,10 +13,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil3.compose.AsyncImage
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
+import com.bumptech.glide.integration.compose.placeholder
 import test.film.R
 import test.film.domain.model.FilmData
 import test.film.presentation.utils.theme.TestFilmTheme
@@ -25,6 +29,7 @@ import test.film.presentation.utils.theme.ratingNumberStyle
 import test.film.presentation.utils.theme.ratingTextStyle
 import test.film.presentation.utils.theme.subtextStyle
 
+@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun DetailsFilm(film: FilmData) {
     LazyColumn(
@@ -33,14 +38,11 @@ fun DetailsFilm(film: FilmData) {
             .padding(horizontal = 16.dp),
     ) {
         item {
-            AsyncImage(
-                film.imageUrl,
-                stringResource(R.string.movie_cover_content_description) + " " + film.localizedName,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 24.dp),
-                alignment = Alignment.Center
-            )
+            GlideImage(film.imageUrl, film.localizedName, Modifier
+                .fillMaxWidth()
+                .padding(vertical = 24.dp), loading = placeholder(
+                ColorPainter(Color.Gray)
+            ))
         }
         item {
             Text(film.localizedName?:"", style = Typography.titleLarge)
@@ -55,8 +57,9 @@ fun DetailsFilm(film: FilmData) {
             Spacer(Modifier.height(10.dp))
         }
         item {
+            if (film.rating==null)return@item
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(film.rating.toString(), style = ratingNumberStyle, color = MaterialTheme.colorScheme.primary)
+                Text(film.rating.ratingToDouble().toString(), style = ratingNumberStyle, color = MaterialTheme.colorScheme.primary)
                 Spacer(Modifier.width(8.dp))
                 Text(stringResource(R.string.rating_source), style = ratingTextStyle, color = MaterialTheme.colorScheme.primary)
             }

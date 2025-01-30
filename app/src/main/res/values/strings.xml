@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">TestFilm</string>
-    <string name="title_top_bar_main">Фильмы</string>
     <string name="movie_cover_content_description">Movie cover</string>
     <string name="year">год</string>
     <string name="rating_source">КиноПоиск</string>
