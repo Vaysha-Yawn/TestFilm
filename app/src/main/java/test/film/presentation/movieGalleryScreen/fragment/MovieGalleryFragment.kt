@@ -2,40 +2,38 @@ package test.film.presentation.movieGalleryScreen.fragment
 
 import android.content.res.Configuration
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.ui.platform.ComposeView
+import androidx.fragment.app.Fragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import test.film.R
+import test.film.domain.model.FilmData
 import test.film.presentation.detailsFilmScreen.fragment.DetailsFilmFragment
+import test.film.presentation.movieGalleryScreen.compose.FilmGalleryScreen
 import test.film.presentation.movieGalleryScreen.viewmodel.MovieGalleryVM
 
 class MovieGalleryFragment : Fragment() {
 
-    private val movieGalleryVM:MovieGalleryVM by viewModel()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    private val movieGalleryVM: MovieGalleryVM by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-       val view = inflater.inflate(R.layout.movie_gallery, container, false)
-        return view
+    ): View {
+        return ComposeView(requireContext()).apply {
+            setContent {
+                FilmGalleryScreen()
+            }
+        }
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-    }
-
-    private fun openDetailsFilm(movieId:String){
+    private fun openDetailsFilm(film: FilmData) {
         if (activity == null) return
         requireActivity().supportFragmentManager.beginTransaction()
-            .add(R.id.container, DetailsFilmFragment.newInstance(movieId))
+            .add(R.id.container, DetailsFilmFragment.newInstance(film))
             .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
             .addToBackStack(null)
             .commit()

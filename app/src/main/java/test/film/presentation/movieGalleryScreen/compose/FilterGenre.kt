@@ -5,14 +5,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import test.film.presentation.utils.theme.TestFilmTheme
 
 @Composable
-fun FilmCard(){
+fun FilterGenre(){
 
 }
 
 @Preview(showBackground = true)
 @Composable
-fun FilmCardPreview(){
+fun FilterGenrePreview(){
     TestFilmTheme {
-        FilmCard()
+        FilterGenre()
     }
 }
