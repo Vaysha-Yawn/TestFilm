@@ -29,12 +29,12 @@ fun Loading(){
     )
 
     LaunchedEffect(Unit) {
-        while (isActive){
+        /*while (isActive){
             degreesState.floatValue+=1f
             if (degreesState.floatValue > 360){
                 degreesState.floatValue = 0f
             }
-        }
+        }*/
     }
 }
 

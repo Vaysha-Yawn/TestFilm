@@ -2,6 +2,7 @@ package test.film.presentation.movieGalleryScreen.compose
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -13,10 +14,10 @@ import test.film.presentation.utils.theme.TestFilmTheme
 import test.film.presentation.utils.theme.Typography
 
 @Composable
-fun FilmCard(film: FilmData, openDetails: (FilmData) -> Unit) {
-    Column(Modifier.clickable { openDetails(film) }) {
-        AsyncImage(film.imageUrl, film.name)
-        Text(film.localizedName,
+fun FilmCard(modifier: Modifier, film: FilmData, openDetails: (FilmData) -> Unit) {
+    Column(modifier.clickable { openDetails(film) }) {
+        AsyncImage(film.imageUrl, film.name, modifier.fillMaxWidth())
+        Text(film.localizedName?:"",
             style = Typography.titleSmall, maxLines = 2,
             overflow = TextOverflow.Ellipsis)
     }
@@ -26,6 +27,6 @@ fun FilmCard(film: FilmData, openDetails: (FilmData) -> Unit) {
 @Composable
 fun FilmCardPreview(){
     TestFilmTheme {
-        FilmCard(FilmData.exampleData){}
+        FilmCard(Modifier, FilmData.exampleData){}
     }
 }

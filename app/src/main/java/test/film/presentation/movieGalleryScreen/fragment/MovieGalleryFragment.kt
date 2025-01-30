@@ -24,7 +24,7 @@ class MovieGalleryFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 FilmGalleryScreen(
-                    filmGalleryVM.uiState.value,
+                    filmGalleryVM.uiState,
                     ::openDetailsFilm,
                     filmGalleryVM::clickToGenre,
                     filmGalleryVM.activeGenre.value,

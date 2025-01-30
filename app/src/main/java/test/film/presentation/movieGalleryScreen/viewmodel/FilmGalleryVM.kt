@@ -5,8 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.async
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import test.film.domain.model.FilmData
 import test.film.domain.usecase.FilterFilmsByGenreUseCase
 import test.film.domain.usecase.GetGenresUseCase
@@ -18,48 +19,43 @@ class FilmGalleryVM(
     private val getSortedFilmsUseCase: GetSortedFilmsUseCase,
     private val getGenreUseCase: GetGenresUseCase
 ) : ViewModel() {
-    private val allFilms = mutableStateOf<List<FilmData>>(listOf())
-    private val uiStateMutable = mutableStateOf<FilmGalleryUiState>(FilmGalleryUiState.Loading)
-    val uiState: State<FilmGalleryUiState> = uiStateMutable
-
-    private val activeGenreMutable = mutableStateOf("")
-    val activeGenre: State<String> = activeGenreMutable
+    private var allFilms: List<FilmData> = listOf()
+    val uiState = mutableStateOf<FilmGalleryUiState>(FilmGalleryUiState.Loading)
+    val activeGenre = mutableStateOf("")
 
     init {
         loadData()
     }
 
     private fun loadData() {
-        uiStateMutable.value = FilmGalleryUiState.Loading
-        val filmsPromise = viewModelScope.async { getSortedFilmsUseCase.invoke() }
+        uiState.value = FilmGalleryUiState.Loading
         val coroutineExceptionHandler = CoroutineExceptionHandler() { context, throwable ->
             onError(throwable.message ?: "")
         }
         viewModelScope.launch(coroutineExceptionHandler) {
-            try {
-                val films = filmsPromise.await()
-                val genres = getGenreUseCase.invoke(films)
-                allFilms.value = films
-                uiStateMutable.value = FilmGalleryUiState.Success(films, genres)
-            } catch (e: Exception) {
-                onError(e.message ?: "")
+            withContext(Dispatchers.IO){
+                val films = getSortedFilmsUseCase()
+                val genres = getGenreUseCase(films)
+                allFilms = films
+                uiState.value = FilmGalleryUiState.Success(films, genres)
             }
         }
     }
 
     private fun onError(error: String) {
-        uiStateMutable.value = FilmGalleryUiState.Error(error)
+        uiState.value = FilmGalleryUiState.Error(error)
     }
 
     fun clickToGenre(genre: String) {
+        if (uiState.value !is FilmGalleryUiState.Success) return
         val currentState = uiState.value as FilmGalleryUiState.Success
         if (activeGenre.value == genre) {
-            activeGenreMutable.value = ""
-            uiStateMutable.value = FilmGalleryUiState.Success(allFilms.value, currentState.genres)
+            activeGenre.value = ""
+            uiState.value = FilmGalleryUiState.Success(allFilms, currentState.genres)
         } else {
-            activeGenreMutable.value = genre
-            val filteredFilms = filterFilmsByGenreUseCase.invoke(allFilms.value, genre)
-            uiStateMutable.value = FilmGalleryUiState.Success(filteredFilms, currentState.genres)
+            activeGenre.value = genre
+            val filteredFilms = filterFilmsByGenreUseCase.invoke(allFilms, genre)
+            uiState.value = FilmGalleryUiState.Success(filteredFilms, currentState.genres)
         }
     }
 

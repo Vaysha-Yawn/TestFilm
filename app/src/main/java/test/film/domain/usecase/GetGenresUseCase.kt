@@ -5,6 +5,6 @@ import test.film.domain.repository.MoviesRepository
 
 class GetGenresUseCase() {
     suspend operator fun invoke(movies:List<FilmData>): List<String> {
-        return movies.flatMap { it.genres }
+        return movies.flatMap { it.genres }.filterNotNull().toSet().toList()
     }
 }

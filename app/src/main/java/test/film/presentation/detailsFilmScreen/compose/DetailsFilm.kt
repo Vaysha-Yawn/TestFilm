@@ -43,12 +43,12 @@ fun DetailsFilm(film: FilmData) {
             )
         }
         item {
-            Text(film.localizedName, style = Typography.titleLarge)
+            Text(film.localizedName?:"", style = Typography.titleLarge)
             Spacer(Modifier.height(10.dp))
         }
         item {
             Text(
-                film.genres.genresToString() + film.year + " " + stringResource(R.string.year),
+                film.genres.filterNotNull().genresToString() + film.year + " " + stringResource(R.string.year),
                 style = subtextStyle,
                 color = MaterialTheme.colorScheme.outline
             )
@@ -63,7 +63,7 @@ fun DetailsFilm(film: FilmData) {
             Spacer(Modifier.height(10.dp))
         }
         item {
-            Text(film.description, style = Typography.bodySmall)
+            Text(film.description?:"", style = Typography.bodySmall)
             Spacer(Modifier.height(10.dp))
         }
     }

@@ -1,11 +1,10 @@
 package test.film.presentation.movieGalleryScreen.compose
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -19,16 +18,21 @@ import test.film.presentation.utils.theme.Typography
 
 @Composable
 fun FilmGallery(films: List<FilmData>, openDetails: (FilmData) -> Unit) {
-    val stateGrid = rememberLazyGridState()
     Column(Modifier.padding(16.dp)) {
         Text(
             stringResource(R.string.films),
             style = Typography.titleMedium,
             modifier = Modifier.padding(bottom = 16.dp)
         )
-        LazyVerticalGrid(GridCells.Fixed(2), state = stateGrid) {
-            items(films){film->
-                FilmCard(film, openDetails)
+        for ((index, film) in films.withIndex()) {
+            Row {
+                if (index % 2 == 0) {
+                    FilmCard(Modifier.weight(1f), film, openDetails)
+                    Spacer(Modifier.width(8.dp))
+                    if (films.size > index + 1) {
+                        FilmCard(Modifier.weight(1f), films[index + 1], openDetails)
+                    }
+                }
             }
         }
     }
