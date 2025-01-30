@@ -1,7 +1,6 @@
-package test.film.presentation.movieGalleryScreen.compose
+package test.film.presentation.filmGalleryScreen.compose
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -14,7 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import test.film.R
 import test.film.domain.model.FilmData
-import test.film.presentation.movieGalleryScreen.viewmodel.FilmGalleryUiState
+import test.film.presentation.filmGalleryScreen.viewmodel.FilmGalleryUiState
 import test.film.presentation.utils.theme.Typography
 
 @Composable

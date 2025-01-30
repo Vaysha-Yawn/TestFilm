@@ -4,7 +4,7 @@ import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import test.film.data.api.GetMoviesRetrofit
+import test.film.data.api.GetFilmsRetrofit
 
 val retrofitModule = module {
     single {
@@ -14,6 +14,6 @@ val retrofitModule = module {
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
-            .create(GetMoviesRetrofit::class.java)
+            .create(GetFilmsRetrofit::class.java)
     }
 }

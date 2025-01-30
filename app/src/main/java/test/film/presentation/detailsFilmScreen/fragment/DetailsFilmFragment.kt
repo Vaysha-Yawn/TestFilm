@@ -11,7 +11,7 @@ import test.film.domain.model.FilmData
 import test.film.presentation.detailsFilmScreen.compose.DetailsFilmScreen
 import test.film.presentation.detailsFilmScreen.viewmodel.DetailsFilmVM
 
-private const val MOVIE_ARG_NAME = "MOVIE"
+private const val FILM_DATA = "FILM_DATA"
 
 class DetailsFilmFragment : Fragment() {
 
@@ -20,7 +20,7 @@ class DetailsFilmFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            val film = it.getSerializable(MOVIE_ARG_NAME)
+            val film = it.getSerializable(FILM_DATA)
             detailsFilmVM.setData(film as FilmData)
         }
     }
@@ -46,7 +46,7 @@ class DetailsFilmFragment : Fragment() {
         fun newInstance(film: FilmData) =
             DetailsFilmFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable(MOVIE_ARG_NAME, film)
+                    putSerializable(FILM_DATA, film)
                 }
             }
     }

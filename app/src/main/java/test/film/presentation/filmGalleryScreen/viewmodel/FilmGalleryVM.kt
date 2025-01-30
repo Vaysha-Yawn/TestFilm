@@ -1,4 +1,4 @@
-package test.film.presentation.movieGalleryScreen.viewmodel
+package test.film.presentation.filmGalleryScreen.viewmodel
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel

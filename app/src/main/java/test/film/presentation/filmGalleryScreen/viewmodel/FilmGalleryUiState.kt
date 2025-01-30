@@ -1,4 +1,4 @@
-package test.film.presentation.movieGalleryScreen.viewmodel
+package test.film.presentation.filmGalleryScreen.viewmodel
 
 import test.film.domain.model.FilmData
 

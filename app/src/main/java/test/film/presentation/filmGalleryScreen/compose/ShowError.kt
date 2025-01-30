@@ -1,4 +1,4 @@
-package test.film.presentation.movieGalleryScreen.compose
+package test.film.presentation.filmGalleryScreen.compose
 
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarDuration

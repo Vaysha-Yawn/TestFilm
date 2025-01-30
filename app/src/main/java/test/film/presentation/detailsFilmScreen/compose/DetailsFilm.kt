@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import test.film.R
 import test.film.domain.model.FilmData
-import test.film.presentation.movieGalleryScreen.compose.Poster
+import test.film.presentation.filmGalleryScreen.compose.Poster
 import test.film.presentation.utils.theme.TestFilmTheme
 import test.film.presentation.utils.theme.Typography
 import test.film.presentation.utils.theme.ratingNumberStyle

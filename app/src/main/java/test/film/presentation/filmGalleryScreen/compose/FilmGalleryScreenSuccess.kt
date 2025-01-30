@@ -1,4 +1,4 @@
-package test.film.presentation.movieGalleryScreen.compose
+package test.film.presentation.filmGalleryScreen.compose
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height

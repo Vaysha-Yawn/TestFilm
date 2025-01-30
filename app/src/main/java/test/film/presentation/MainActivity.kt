@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import test.film.R
-import test.film.presentation.movieGalleryScreen.fragment.MovieGalleryFragment
+import test.film.presentation.filmGalleryScreen.fragment.FilmGalleryFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,13 +20,13 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         if (savedInstanceState == null) {
-            launchMovieGalleryFragment()
+            launchFilmGalleryFragment()
         }
     }
 
-    private fun launchMovieGalleryFragment() {
+    private fun launchFilmGalleryFragment() {
         supportFragmentManager.beginTransaction()
-            .add(R.id.container, MovieGalleryFragment.newInstance())
+            .add(R.id.container, FilmGalleryFragment.newInstance())
             .commit()
     }
 }

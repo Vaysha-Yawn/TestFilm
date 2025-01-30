@@ -1,4 +1,4 @@
-package test.film.presentation.movieGalleryScreen.fragment
+package test.film.presentation.filmGalleryScreen.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,10 +10,10 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import test.film.R
 import test.film.domain.model.FilmData
 import test.film.presentation.detailsFilmScreen.fragment.DetailsFilmFragment
-import test.film.presentation.movieGalleryScreen.compose.FilmGalleryScreen
-import test.film.presentation.movieGalleryScreen.viewmodel.FilmGalleryVM
+import test.film.presentation.filmGalleryScreen.compose.FilmGalleryScreen
+import test.film.presentation.filmGalleryScreen.viewmodel.FilmGalleryVM
 
-class MovieGalleryFragment : Fragment() {
+class FilmGalleryFragment : Fragment() {
 
     private val filmGalleryVM: FilmGalleryVM by viewModel()
 
@@ -44,6 +44,6 @@ class MovieGalleryFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = MovieGalleryFragment()
+        fun newInstance() = FilmGalleryFragment()
     }
 }
