@@ -4,5 +4,8 @@
     <string name="movie_cover_content_description">Movie cover</string>
     <string name="year">год</string>
     <string name="rating_source">КиноПоиск</string>
+    <string name="genres">Жанры</string>
+    <string name="films">Фильмы</string>
+    <string name="try_again">ПОВТОРИТЬ</string>
 
 </resources>

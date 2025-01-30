@@ -1,11 +1,9 @@
 package test.film.presentation.movieGalleryScreen.fragment
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,7 +23,13 @@ class MovieGalleryFragment : Fragment() {
     ): View {
         return ComposeView(requireContext()).apply {
             setContent {
-                FilmGalleryScreen()
+                FilmGalleryScreen(
+                    movieGalleryVM.uiState.value,
+                    ::openDetailsFilm,
+                    movieGalleryVM::clickToGenre,
+                    movieGalleryVM.activeGenre.value,
+                    movieGalleryVM::reload
+                )
             }
         }
     }
