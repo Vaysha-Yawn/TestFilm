@@ -38,7 +38,6 @@ class MovieGalleryFragment : Fragment() {
         if (activity == null) return
         requireActivity().supportFragmentManager.beginTransaction()
             .add(R.id.container, DetailsFilmFragment.newInstance(film))
-            .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
             .addToBackStack(null)
             .commit()
     }

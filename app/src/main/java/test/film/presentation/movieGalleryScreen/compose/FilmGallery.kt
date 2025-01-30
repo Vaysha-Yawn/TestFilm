@@ -27,7 +27,7 @@ fun FilmGallery(films: List<FilmData>, openDetails: (FilmData) -> Unit) {
         for ((index, film) in films.withIndex()) {
             Row {
                 if (index % 2 == 0) {
-                    FilmCard(Modifier.weight(1f), film, openDetails)
+                    FilmCard( Modifier.weight(1f), film, openDetails)
                     Spacer(Modifier.width(8.dp))
                     if (films.size > index + 1) {
                         FilmCard(Modifier.weight(1f), films[index + 1], openDetails)

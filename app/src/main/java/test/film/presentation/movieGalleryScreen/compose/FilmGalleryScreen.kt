@@ -1,5 +1,6 @@
 package test.film.presentation.movieGalleryScreen.compose
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -31,7 +32,7 @@ fun FilmGalleryScreen(
                 title = {
                     Text(
                         stringResource(R.string.films),
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.fillMaxSize(),
                         textAlign = TextAlign.Center,
                         style = Typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onPrimary
