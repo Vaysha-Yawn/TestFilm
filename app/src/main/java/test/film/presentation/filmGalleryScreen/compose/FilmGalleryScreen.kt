@@ -1,11 +1,7 @@
 package test.film.presentation.filmGalleryScreen.compose
 
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
@@ -17,7 +13,6 @@ import test.film.presentation.filmGalleryScreen.viewmodel.FilmGalleryUiState
 import test.film.presentation.utils.theme.Typography
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class)
 fun FilmGalleryScreen(
     uiState: MutableState<FilmGalleryUiState>,
     openDetails: (FilmData) -> Unit,
@@ -27,17 +22,12 @@ fun FilmGalleryScreen(
 ) {
     Wrapper(
         {
-            TopAppBar(
-                title = {
-                    Text(
-                        stringResource(R.string.films),
-                        modifier = Modifier.fillMaxSize(),
-                        textAlign = TextAlign.Center,
-                        style = Typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.onPrimary
-                    )
-                },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primary)
+            Text(
+                stringResource(R.string.films),
+                textAlign = TextAlign.Center,
+                modifier = Modifier.weight(1f),
+                style = Typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onPrimary
             )
         }
     ) {
