@@ -6,5 +6,6 @@
     <string name="genres">Жанры</string>
     <string name="films">Фильмы</string>
     <string name="try_again">ПОВТОРИТЬ</string>
+    <string name="error">Не удалось загрузить данные. Проверьте ваше подключение к сети.</string>
 
 </resources>

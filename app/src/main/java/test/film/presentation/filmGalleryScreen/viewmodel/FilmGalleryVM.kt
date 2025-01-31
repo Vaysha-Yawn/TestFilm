@@ -1,5 +1,6 @@
 package test.film.presentation.filmGalleryScreen.viewmodel
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,6 +8,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import test.film.R
 import test.film.domain.model.FilmData
 import test.film.domain.usecase.FilterFilmsByGenreUseCase
 import test.film.domain.usecase.GetGenresUseCase
@@ -42,6 +44,7 @@ class FilmGalleryVM(
     }
 
     private fun onError(error: String) {
+        Log.e("Load data error", error)
         uiState.value = FilmGalleryUiState.Error(error)
     }
 
